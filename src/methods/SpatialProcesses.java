@@ -27,9 +27,9 @@ public class SpatialProcesses {
      */
     public BufferedImage applyMeanFilter(BufferedImage image) {
         float[] kernel = {
-                1f/9, 1f/9, 1f/9,
-                1f/9, 1f/9, 1f/9,
-                1f/9, 1f/9, 1f/9
+                1f / 9, 1f / 9, 1f / 9,
+                1f / 9, 1f / 9, 1f / 9,
+                1f / 9, 1f / 9, 1f / 9
         };
 
         BufferedImageOp op = new ConvolveOp(new Kernel(3, 3, kernel));

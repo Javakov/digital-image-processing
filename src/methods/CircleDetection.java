@@ -6,6 +6,8 @@ import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <ul>
@@ -19,8 +21,8 @@ public class CircleDetection extends AbstractImageProcessor {
 
     /**
      * <ul>
-     *     <li><b>Метод:</b> Распознавание круга на изображении</li>
-     *     <li><b>Описание:</b> Распознает круги на изображении с использованием алгоритма Хафа для кругов.</li>
+     *     <li><b>Метод:</b> Распознавание круга </li>
+     *     <li><b>Описание:</b> Ищет круги на изображении с помощью контурного метода.</li>
      *     <li><b>Аргументы:</b>
      *         <ul>
      *             <li><b>bufferedImage</b> - исходное изображение типа BufferedImage.</li>
@@ -36,23 +38,35 @@ public class CircleDetection extends AbstractImageProcessor {
         Mat grayImage = new Mat();
         Imgproc.cvtColor(image, grayImage, Imgproc.COLOR_BGR2GRAY);
 
-        // Размытие изображения для улучшения обнаружения
+        // Размытие изображения для улучшения контуров
         Mat blurredImage = new Mat();
         Imgproc.GaussianBlur(grayImage, blurredImage, new Size(9, 9), 2, 2);
 
-        // Для поиска кругов используем преобразование Хафа для кругов
-        Mat circles = new Mat();
-        Imgproc.HoughCircles(blurredImage, circles, Imgproc.HOUGH_GRADIENT, 1,
-                (double) blurredImage.rows() / 8, 200, 100, 0, 0);
+        // Найдем контуры
+        Mat edges = new Mat();
+        Imgproc.Canny(blurredImage, edges, 100, 200);
 
-        if (circles.cols() > 0) {
-            // Извлекаем первый найденный круг
-            double[] circleData = circles.get(0, 0);
-            int x = (int) circleData[0];
-            int y = (int) circleData[1];
-            int radius = (int) circleData[2];
+        // Найдем контуры
+        List<MatOfPoint> contours = new ArrayList<>();
+        Mat hierarchy = new Mat();
+        Imgproc.findContours(edges, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
 
-            return new Circle(x, y, radius);
+        // Ищем круг среди контуров
+        for (MatOfPoint contour : contours) {
+            // Аппроксимация контура до окружности
+            MatOfPoint2f contour2f = new MatOfPoint2f(contour.toArray());
+            RotatedRect minEllipse = Imgproc.fitEllipse(contour2f);
+
+            // Проверяем, если найденная форма является окружностью
+            double aspectRatio = minEllipse.size.width / minEllipse.size.height;
+            if (Math.abs(aspectRatio - 1) < 0.2) { // проверка на круг (если соотношение сторон близко к 1)
+                // Извлекаем координаты центра и радиус
+                int x = (int) minEllipse.center.x;
+                int y = (int) minEllipse.center.y;
+                int radius = (int) (minEllipse.size.width / 2);
+
+                return new Circle(x, y, radius);
+            }
         }
 
         return null;
