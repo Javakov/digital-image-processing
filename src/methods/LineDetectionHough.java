@@ -1,6 +1,6 @@
 package methods;
 
-import helper.AbstractImageProcessor;
+import helper.ImageProcessor;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import entity.Line;
@@ -9,7 +9,7 @@ import org.opencv.imgproc.Imgproc;
 
 import java.awt.image.BufferedImage;
 
-public class LineDetectionHough extends AbstractImageProcessor {
+public class LineDetectionHough extends ImageProcessor {
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }

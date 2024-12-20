@@ -1,6 +1,6 @@
 package methods;
 
-import helper.AbstractImageProcessor;
+import helper.ImageProcessor;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 
@@ -13,7 +13,7 @@ import java.util.List;
  *     <li><b>Класс:</b> Определение угла поворота сканированного текста</li>
  * </ul>
  */
-public class ImageRotation extends AbstractImageProcessor {
+public class ImageRotation extends ImageProcessor {
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }

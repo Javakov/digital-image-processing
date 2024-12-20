@@ -1,13 +1,13 @@
 package methods;
 
 import entity.Circle;
-import helper.AbstractImageProcessor;
+import helper.ImageProcessor;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 
 import java.awt.image.BufferedImage;
 
-public class CircleDetectionConvolution extends AbstractImageProcessor {
+public class CircleDetectionConvolution extends ImageProcessor {
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME); // Загружаем библиотеку OpenCV
     }

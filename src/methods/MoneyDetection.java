@@ -1,6 +1,6 @@
 package methods;
 
-import helper.AbstractImageProcessor;
+import helper.ImageProcessor;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoneyDetection extends AbstractImageProcessor {
+public class MoneyDetection extends ImageProcessor {
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }

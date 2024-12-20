@@ -1,7 +1,7 @@
 package methods;
 
 import entity.Circle;
-import helper.AbstractImageProcessor;
+import helper.ImageProcessor;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 
@@ -14,7 +14,7 @@ import java.util.List;
  *     <li><b>Класс:</b> Распознавание круга на изображении</li>
  * </ul>
  */
-public class CircleDetection extends AbstractImageProcessor {
+public class CircleDetection extends ImageProcessor {
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME); // Загружаем библиотеку OpenCV
     }

@@ -29,21 +29,27 @@ public class Main {
         LineDetectionHough lineDetectionHough = new LineDetectionHough();
 
         BufferedImage brightenedImage = pixelProcesses.brighten(image, 50);
+        System.out.println("Осветление изображения завершено.");
         ImageIO.write(brightenedImage, "png", new File("images_result/brighten_img.png"));
 
         BufferedImage histogramImage = pixelProcesses.drawHistogram(image);
+        System.out.println("Построение гистограммы завершено.");
         ImageIO.write(histogramImage, "png", new File("images_result/histogram_img.png"));
 
         BufferedImage binaryImage = pixelProcesses.binary(image, 90);
+        System.out.println("Бинаризация изображения завершена.");
         ImageIO.write(binaryImage, "png", new File("images_result/binary_img.png"));
 
         BufferedImage meanFilterImage = spatialProcesses.applyMeanFilter(image);
+        System.out.println("Применение фильтра усреднения завершено.");
         ImageIO.write(meanFilterImage, "png", new File("images_result/mean_filter_img.png"));
 
         BufferedImage scaleImage = geometricProcesses.scale(image, 1.5, 1.5);
+        System.out.println("Масштабирование изображения завершено.");
         ImageIO.write(scaleImage, "png", new File("images_result/scale_img.png"));
 
         BufferedImage rotateImage = geometricProcesses.rotate(image, 10);
+        System.out.println("Поворот изображения завершён.");
         ImageIO.write(rotateImage, "png", new File("images_result/rotate_img.png"));
 
         double rotationAngle = imageRotation.getRotationAngle(text);

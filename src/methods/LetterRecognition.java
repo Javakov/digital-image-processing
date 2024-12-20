@@ -1,6 +1,6 @@
 package methods;
 
-import helper.AbstractImageProcessor;
+import helper.ImageProcessor;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LetterRecognition extends AbstractImageProcessor {
+public class LetterRecognition extends ImageProcessor {
 
     /**
      * <ul>

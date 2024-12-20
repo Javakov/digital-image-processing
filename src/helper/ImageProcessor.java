@@ -5,7 +5,7 @@ import org.opencv.core.Mat;
 
 import java.awt.image.BufferedImage;
 
-public class AbstractImageProcessor {
+public class ImageProcessor {
 
     /**
      * <ul>

@@ -1,6 +1,6 @@
 package methods;
 
-import helper.AbstractImageProcessor;
+import helper.ImageProcessor;
 import org.opencv.core.Core;
 import entity.Circle;
 
@@ -10,7 +10,7 @@ import org.opencv.imgproc.Imgproc;
 
 import java.awt.image.BufferedImage;
 
-public class CircleDetectionHough extends AbstractImageProcessor {
+public class CircleDetectionHough extends ImageProcessor {
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME); // Загружаем библиотеку OpenCV
     }
